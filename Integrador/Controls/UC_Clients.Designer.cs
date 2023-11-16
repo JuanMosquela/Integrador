@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
+            this.listBoxClients = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // label1
@@ -42,14 +43,26 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Clients";
             // 
+            // listBoxClients
+            // 
+            this.listBoxClients.FormattingEnabled = true;
+            this.listBoxClients.Items.AddRange(new object[] {
+            "list2"});
+            this.listBoxClients.Location = new System.Drawing.Point(173, 134);
+            this.listBoxClients.Name = "listBoxClients";
+            this.listBoxClients.Size = new System.Drawing.Size(120, 95);
+            this.listBoxClients.TabIndex = 1;
+            // 
             // UC_Clients
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
+            this.Controls.Add(this.listBoxClients);
             this.Controls.Add(this.label1);
             this.Name = "UC_Clients";
             this.Size = new System.Drawing.Size(822, 426);
+            this.Load += new System.EventHandler(this.UC_Clients_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -58,5 +71,6 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox listBoxClients;
     }
 }

@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace Integrador
 {
     public partial class UC_Clients : UserControl
@@ -15,6 +17,11 @@ namespace Integrador
         public UC_Clients()
         {
             InitializeComponent();
+        }
+
+        private void UC_Clients_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }
