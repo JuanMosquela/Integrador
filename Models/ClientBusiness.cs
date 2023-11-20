@@ -1,31 +1,28 @@
 ﻿using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 
+
 namespace Models
 {
     public class ClientBusiness
     {
         private static string connectionString;
 
+       
+
         static ClientBusiness()
         {
             ClientBusiness.connectionString = "server=.\\SQLEXPRESS; database=INTEGRADOR; integrated security=true";
         }
 
-
-
-
-
         public static List<Client> GetClients()
         {
             List<Client> clients = new List<Client>();
-
-
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT * FROM PERSONA";
+                    string query = "SELECT id, dni, first_name, last_name, age, phone, inscriptionDate, limitDate FROM PERSONA";
                     SqlCommand command = new SqlCommand(query, connection);
                     connection.Open();
 
@@ -33,8 +30,7 @@ namespace Models
                     {
                         while (reader.Read())
                         {     
-                            int id = (int)reader["id"];
-                            
+                            int id = (int)reader["id"];                            
                             string dni = (string)reader["dni"];
                             string first_name = (string)reader["first_name"];
                             string last_name = (string)reader["last_name"];
@@ -46,15 +42,13 @@ namespace Models
 
                             Client client = new Client(id, dni, first_name, last_name, age, phone, EGenre.MALE, inscriptionDate, limitDate);
                             
-                            clients.Add(client);                            
+                            clients.Add(client);                         
+                            
+                            
                         }
-
                     }
-
                     return clients;
-                }
-
-                
+                }                
             }
             catch (Exception ex)
             {
@@ -63,23 +57,26 @@ namespace Models
             }
         }
 
+       
+
         public static bool Edit(Client client)
-        {
-            
+        {            
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
 
-                    string query = $"UPDATE PERSONA SET first_name = '{client.FirstName}' WHERE id = {client.Id}";
+                    string query = $"UPDATE PERSONA SET first_name='{client.FirstName}', last_name='{client.LastName}', dni='{client.Dni}', age='{client.Age}', phone='{client.Phone}' WHERE id = {client.Id}";
                    
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         connection.Open();
                         command.Parameters.AddWithValue("@FirstName", client.FirstName);
+                        command.Parameters.AddWithValue("@LastName", client.LastName);
+                        command.Parameters.AddWithValue("@Dni", client.Dni);
+                        command.Parameters.AddWithValue("@Phone", client.Phone);
+                        command.Parameters.AddWithValue("@Age", client.Age);
                         command.ExecuteNonQuery();
-                        
-
                     }
                 }
                 return true;
@@ -104,22 +101,15 @@ namespace Models
                         command.Parameters.AddWithValue("@id", id);
                         connection.Open();
                         command.ExecuteNonQuery();
-                      
-
                     }
-
-                }
-
-                
+                }                
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al guardar el cliente: " + ex.Message);
                 throw;
             }
-        }       
-
-        
+        }          
 
         public static void SaveClient(Client client)
         {
@@ -140,19 +130,17 @@ namespace Models
                         command.Parameters.AddWithValue("@LimitDay", client.LimitDate);
 
                         connection.Open();
-                        command.ExecuteNonQuery();
-                       
+                        command.ExecuteNonQuery();              
 
                     }
                 }
+                
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al guardar el cliente: " + ex.Message);
                 throw;
             }
-        }
-
-       
+        }       
     }
 }
