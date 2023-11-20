@@ -15,12 +15,10 @@ namespace Models
         
         private static double price;
 
-
         static Gym()
         {
             Gym.price = 7500;
-            Gym.clients = new List<Client>();
-       
+            Gym.clients = new List<Client>();       
         }
 
         public static string MonthIncomes { get { return price.ToString(); } }
@@ -31,17 +29,11 @@ namespace Models
         public static double CalculateTotalIncomes() => Gym.price * TotalClients;         
 
         public static void enterClient(Client client)
-        {
-            clients.Add(client);
+        {           
+            if (!clients.Contains(client))
+            {
+                clients.Add(client);
+            }
         } 
-        
-
-        public static void EnterPersonal()
-        {
-
-        }
-        
-
-
     }
 }
