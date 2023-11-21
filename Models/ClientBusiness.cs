@@ -88,7 +88,7 @@ namespace Models
             }
         }
 
-        public static void DeleteClient(int id)
+        public static int DeleteClient(int id)
         {
             try
             {
@@ -101,13 +101,14 @@ namespace Models
                         command.Parameters.AddWithValue("@id", id);
                         connection.Open();
                         command.ExecuteNonQuery();
+                        return 1;
                     }
                 }                
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error al guardar el cliente: " + ex.Message);
-                throw;
+                return 0;
             }
         }          
 
