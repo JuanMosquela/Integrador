@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using System.Runtime.CompilerServices;
 
 
@@ -13,6 +14,17 @@ namespace Models
             ClientBusiness.connectionString = "server=.\\SQLEXPRESS; database=INTEGRADOR; integrated security=true";
         }
 
+        /// <summary>
+        /// Obtiene una lista de clientes desde la base de datos.
+        /// </summary>
+        /// <returns>
+        /// Una lista de objetos Client, cada uno representando un cliente con detalles como ID, DNI,
+        /// nombre, apellido, edad, teléfono, fecha de inscripción y fecha límite.
+        /// </returns>
+        /// <exception>
+        /// Lanza una excepción si ocurre un error durante el proceso de obtención de clientes desde la base de datos.
+        /// </exception>
+        /// 
         public static List<Client> GetClients()
         {
             List<Client> clients = new List<Client>();
@@ -55,8 +67,16 @@ namespace Models
             }
         }
 
-       
-
+        /// <summary>
+        /// Obtiene una lista de clientes desde la base de datos.
+        /// </summary>
+        /// <returns>
+        /// Una lista de objetos Client, cada uno representando un cliente con detalles como ID, DNI,
+        /// nombre, apellido, edad, teléfono, fecha de inscripción y fecha límite.
+        /// </returns>
+        /// <exception>
+        /// Lanza una excepción si ocurre un error durante el proceso de obtención de clientes desde la base de datos.
+        /// </exception>
         public static bool Edit(Client client)
         {            
             try
