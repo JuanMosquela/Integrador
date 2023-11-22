@@ -21,9 +21,6 @@ namespace Models
         public Client(int id, string dni, string first_name, string last_name, int age, string phone, EGenre genre) : this(id, dni, first_name, last_name, age, phone, genre, DateTime.Today, DateTime.Today.AddDays(30))
         {           
         }
-
-
-
      
         public DateTime InscriptionDate { get {  return inscriptionDate; } }
 

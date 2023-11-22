@@ -11,14 +11,17 @@ namespace Models
 {
     public static class Gym
     {
+        
         private static List<Client> clients;
+        private static GenericList<Teacher> personal;
         
         private static double price;
 
         static Gym()
         {
             Gym.price = 7500;
-            Gym.clients = new List<Client>();       
+            Gym.clients = new List<Client>();
+            Gym.personal = new GenericList<Teacher>();
         }
 
         public static string MonthIncomes { get { return price.ToString(); } }
