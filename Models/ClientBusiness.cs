@@ -6,9 +6,7 @@ namespace Models
 {
     public class ClientBusiness
     {
-        private static string connectionString;
-
-       
+        private static string connectionString;       
 
         static ClientBusiness()
         {
@@ -134,9 +132,7 @@ namespace Models
                         command.ExecuteNonQuery();              
 
                     }
-                }
-
-                
+                }               
                 
             }
             catch (Exception ex)
